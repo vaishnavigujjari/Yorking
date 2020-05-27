@@ -1,5 +1,70 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<br>
+<br>
+<div class="container">
+    <!-- <div class="container">
+      <div class="section-title text-center">
+          <h2>Create your team for upcoming Matches</h2>
+      </div>
+    </div>   -->
+  <table class="table" style="text-align: center;">
+    <!--Table head -->
+    <thead>
+      <tr>
+        <th><h4>Match ID</h4></th>
+        <th><h4>Country-1</h4></th>
+        <th><h4>Country-2</h4></th>
+        <th><h4>Details</h4></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if error %}
+	        {% for i in error_msg %}
+	            <p style="color:red">{{i}}</p>
+	        {% endfor %}
+        {% endif %}
+      <form action="{% url 'players' %}" method="POST">
+        {% csrf_token %}
+        <tr>
+            {% for i in r1 %}
+	            <td>{{ i }}</td>
+            {% endfor %}
+            <td><input type="radio" name="match" id="1" value="1"></td><br>
+        </tr>
+        <br>
+        <br>
+        <tr>
+            {% for i in r2 %}
+              <td>{{ i }}</td>
+            {% endfor %}
+            <td><input type="radio" name="match" id="2" value="2"></td><br>
+        </tr>
+        <tr>
+            {% for i in r3 %}
+              <td>{{ i }}</td>
+            {% endfor %}
+            <td><input type="radio" name="match" id="3" value="3"></td><br>
+        </tr>
+        <tr>
+            {% for i in r4 %}
+              <td>{{ i }}</td>
+            {% endfor %}
+            <td><input type="radio" name="match" id="4" value="4"></td><br>
+        </tr>
+        <tr>
+          {% for i in r5 %}
+            <td>{{ i }}</td>
+          {% endfor %}
+          <td><input type="radio" name="match" id="5" value="5"></td><br>
+        </tr>
+        
+    </tbody>
+    </table>
+    <div style="text-align: center;">
+      <input type="submit" name="submit">
+  </div>
+    </form>
+</div>
 {% endblock %}

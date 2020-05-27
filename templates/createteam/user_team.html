@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center;">
+<div class="row">
+	<div class="col-12">
+		<h1 style="text-align: center; color: green; font-size:40px;">Choose your Captain from the selected players!
+		</h1>
+	</div>
+</div>
+<br>
+<br>
+	<form action="{% url 'dashboard' %}" method="POST">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-12">
+				<ul style="column-count: 2; column-gap: 0rem; list-style: none;">
+			{% for i in batsmen %}			
+				<input type="radio" name="captain" value="{{i.pid}}"> {{i.name}}<br>
+			{% endfor %}
+
+			{% for i in bowler %}
+				<input type="radio" name="captain" value="{{i.pid}}"> {{i.name}}<br>
+			{% endfor %}
+
+			{% for i in all_rounder %}
+				<input type="radio" name="captain" value="{{i.pid}}"> {{i.name}}<br>
+			{% endfor %}
+
+			{% for i in wicket_keeper %}
+				<input type="radio" name="captain" value="{{i.pid}}"> {{i.name}}<br>
+			{% endfor %}
+			</ul>
+			<br>
+			</div>
+		</div>
+
+			<div style="text-align: center;">
+				<input type="submit" name="submit">
+			</div>
+			</form>
+		</div>
+
+
+{% endblock %}
