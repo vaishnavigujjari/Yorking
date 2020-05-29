@@ -12,6 +12,7 @@ class Matches(models.Model):
     matchid=models.IntegerField(primary_key=True)
     coun1=models.CharField(max_length=20)
     coun2=models.CharField(max_length=20)
+    status=models.CharField(max_length=200)
 
 class User_team(models.Model):
     user_id=models.IntegerField(primary_key=True)
@@ -23,3 +24,6 @@ class User_team(models.Model):
 class Choosen_players(models.Model):
     user_match=models.ForeignKey('User_team',on_delete=models.CASCADE)
     pid=models.ForeignKey('Players',on_delete=models.CASCADE)
+    stars=models.IntegerField(default=0)
+    class Meta:
+        unique_together=(('user_match','pid'),)
