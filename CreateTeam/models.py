@@ -1,29 +1,38 @@
 from django.db import models
-from django.db import OperationalError
 
-class Players(models.Model):
-    pid=models.IntegerField(primary_key=True)
-    name=models.CharField(max_length=50)
-    category=models.CharField(max_length=20)
-    points=models.IntegerField()
-    country=models.CharField(max_length=20)
+class country_team(models.Model):
+	player_id=models.IntegerField(primary_key=True)
+	player_name=models.CharField(max_length=200)
+	category=models.CharField(max_length=200)
+	points=models.IntegerField(default=6)
+	country=models.CharField(max_length=200)
 
-class Matches(models.Model):
-    matchid=models.IntegerField(primary_key=True)
-    coun1=models.CharField(max_length=20)
-    coun2=models.CharField(max_length=20)
-    status=models.CharField(max_length=200)
+class user_team(models.Model):
+	user_id=models.IntegerField(default=0)
+	match_id=models.IntegerField(default=0)
+	captain=models.IntegerField(default=000)
+	class Meta:
+		unique_together=(('user_id','match_id'),)
 
-class User_team(models.Model):
-    user_id=models.IntegerField(primary_key=True)
-    matchid=models.ForeignKey('Matches',on_delete=models.CASCADE)
-    captain=models.IntegerField()
-    class Meta:
-        unique_together=(('user_id','matchid'),)
+class choosen_players(models.Model):
+	user_match=models.ForeignKey('user_team',on_delete=models.CASCADE)
+	player_id=models.IntegerField(default=0)
+	stars=models.IntegerField(default=0)
+	class Meta:
+		unique_together=(('user_match','player_id'),)
 
-class Choosen_players(models.Model):
-    user_match=models.ForeignKey('User_team',on_delete=models.CASCADE)
-    pid=models.ForeignKey('Players',on_delete=models.CASCADE)
-    stars=models.IntegerField(default=0)
-    class Meta:
-        unique_together=(('user_match','pid'),)
+class match_user(models.Model):
+	match_id=models.IntegerField(primary_key=True)
+	country1=models.CharField(max_length=200)
+	country2=models.CharField(max_length=200)
+	status=models.CharField(max_length=200)
+
+class match_performance(models.Model):
+	match_id=models.IntegerField(default=0)
+	player_id=models.IntegerField(default=0)
+	category=models.CharField(max_length=200)
+	runs=models.IntegerField(default=0)
+	catches=models.IntegerField(default=0)
+	wickets=models.IntegerField(default=0)
+	class Meta:
+		unique_together = (('match_id', 'player_id'),)
