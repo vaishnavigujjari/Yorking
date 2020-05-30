@@ -1,12 +1,60 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<br>
-<br>
-<br>
-<div style="text-align: center;">
-    <h3>Name:  {{ request.user }}</h3>
+{% csrf_token %}
+          {% if error %}
+        <h3 style="color:red"> {{error_msg}}</h3>
 
+      {% endif %}
+<div class="container">
+      <div class="section-title text-center">
+          
+    </div>  
+      <div class="container">
+    
+  
+      {% csrf_token %}
+    <div class = "c">
+  <div class="row">
+    <div class="col-12">
+      <h1 style="text-align: center; color: green; text-transform: uppercase; font-size:30px;">Your Profile
+        </h1>
+    
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12">
+     <ul style="column-count: 1; column-gap: 20rem; list-style: none; ">
+        
+       
+        <li>
+         
+        
+          <li style="color: black; font-size:18px;">Name                             :      {{request.user}}</li>
+          <li style="color: black; font-size:18px;">Email                            :      {{email}}</li>
+          <li style="color: black; font-size:18px;">Number of matches Participated   :       {{k}}</li>
+      
+           
+          </label>
+      
+        </li>
+       
+       </ul>
+    </div>
+  </div>
 </div>
+</div>
+</div>
+
+
+  <br>
+  <br>
+  <br>
+  <br>   
+<br>
+<br>
+<br>
+
 
 {% endblock %}

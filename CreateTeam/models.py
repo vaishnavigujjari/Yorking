@@ -16,7 +16,7 @@ class user_team(models.Model):
 
 class choosen_players(models.Model):
 	user_match=models.ForeignKey('user_team',on_delete=models.CASCADE)
-	player_id=models.IntegerField(default=0)
+	player_id=models.ForeignKey('country_team',on_delete=models.CASCADE)
 	stars=models.IntegerField(default=0)
 	class Meta:
 		unique_together=(('user_match','player_id'),)
@@ -26,6 +26,7 @@ class match_user(models.Model):
 	country1=models.CharField(max_length=200)
 	country2=models.CharField(max_length=200)
 	status=models.CharField(max_length=200)
+    	
 
 class match_performance(models.Model):
 	match_id=models.IntegerField(default=0)
@@ -36,3 +37,4 @@ class match_performance(models.Model):
 	wickets=models.IntegerField(default=0)
 	class Meta:
 		unique_together = (('match_id', 'player_id'),)
+

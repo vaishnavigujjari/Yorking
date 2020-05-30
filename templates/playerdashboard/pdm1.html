@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+  <br>
+  <br>
+  <table class="table" style="text-align: center;">
+    <!--Table head -->
+    <thead>
+      <tr>
+        <th><h2>S.No.</h2></th>
+        <th><h2>Name</h2></th>
+        <th><h2>Country</h2></th>
+        <th><h2>Category</h2></th>
+        <th><h2>Runs</h2></th>
+        <th><h2>Catches</h2></th>
+        <th><h2>Wickets</h2></th>
+        <th><h2>Played/Did not play</h2></th>
+<!--         <th><h2>Details</h2></th>
+ -->      </tr>
+    </thead>
+    <!-- end of Table head -->
+
+    <!--Table Body -->
+    <tbody>
+      {% for i,j,k in details %}
+      <tr>
+        <td><p style="font-size:14px;">{{ forloop.counter }}</p></td>
+        <td><p style="font-size:14px;">{{ j.0.player_name }}</p></td>
+        <td><p style="font-size:14px;">{{ j.0.country }}</p></td>
+        <td><p style="font-size:14px;">{{ j.0.category }}</p></td>
+        <td><p style="font-size:14px;">{{ i.0.runs }}</p></td>
+        <td><p style="font-size:14px;">{{ i.0.catches }}</p></td>
+        <td><p style="font-size:14px;">{{ i.0.wickets }}</p></td>
+        <td><p style="font-size:14px;">{{ k.0 }}</p></td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+  <br>
+  <br>
+
+  {% endblock %}

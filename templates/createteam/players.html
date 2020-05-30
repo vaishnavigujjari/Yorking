@@ -5,113 +5,158 @@
 <br>
 <br>
 <br>
-<br>
-<form action="{% url 'user_team' %}" method="POST">
-    <div style="text-align:center">  
-        {% csrf_token %}
-            {% if error %}
-                {% for i in error_msg %}
-                    <h3 style="color:red"> {{i}}</h3>
-                {% endfor  %}
-            {% endif %}
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <h1 style="text-align: center; color: green; text-transform: uppercase; font-size:40px;">Batsmen
-            </h1>
-        </div>
-    </div>
-    <br>
-    <div class="row">
-    <div class="col-12">
-        <ul style="column-count: 4; column-gap: 5rem; list-style: none;">
-        {% for i in batsmen %}
-        <li>
-            <input type="checkbox" name="batsmen" id="{{i.pid}}" value="{{i.pid}}" >
-            <label for="{{i.pid}}">
-                {{i.name}} 
-                {{i.points}}
-            </label>
-        </li>
-        {% endfor %}
-        </ul>
-    </div>
-    </div>
-<br>
-
-    <div class="row">
-        <div class="col-12">
-            <h1 style="text-align: center; color: green; text-transform: uppercase; font-size:40px;">Wicket-Keepers
-            </h1>
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-12">
-            <ul style="column-count: 3; column-gap: 10rem; list-style: none;">
-            {% for i in wicket_keeper %}
-            <li>
-                <input type="checkbox" name="wicket_keeper" id="{{i.pid}}" value="{{i.pid}}" >
-                <label for="{{i.pid}}">
-                    {{i.name}} 
-                    {{i.points}}
-                </label>
-            </li>
-            {% endfor %}
-            </ul>
-        </div>
-        </div>
-        <br>
-
-    <div class="row">
-        <div class="col-12">
-            <h1 style="text-align: center; color: green; text-transform: uppercase; font-size:40px;">All-Rounders
-            </h1>
-        </div>
-    </div>
-    <br>    <div class="row">
-        <div class="col-12">
-            <ul style="column-count: 4; column-gap: 10rem; list-style: none;">
-            {% for i in all_rounder %}
-            <li>
-                <input type="checkbox" name="all_rounder" id="{{i.pid}}" value="{{i.pid}}" >
-                <label for="{{i.pid}}">
-                    {{i.name}} 
-                    {{i.points}}
-                </label>
-            </li>
-            {% endfor %}
-            </ul>
-        </div>
-        </div>
-        <br>
-    <div class="row">
-        <div class="col-12">
-            <h1 style="text-align: center; color: green; text-transform: uppercase; font-size:40px;">Bowlers
-            </h1>
-        </div>
-    </div>
-    <br>    
-    <div class="row">
-        <div class="col-12">
-            <ul style="column-count: 4; column-gap: 10rem; list-style: none;">
-            {% for i in bowler %}
-            <li>
-                <input type="checkbox" name="bowler" id="{{i.pid}}" value="{{i.pid}}" >
-                <label for="{{i.pid}}">
-                    {{i.name}} 
-                    {{i.points}}
-                </label>
-            </li>
-            {% endfor %}
-            </ul>
-        </div>
-        </div>
-    <br>
-    <div style="text-align:center">  
-        <input type="submit" value="submit" text-align="center">
+    <div class="container">
+      <div class="section-title text-center">
+          <h2>Choose your players now!</h2>
+          <h3  style="color:blue">Remaining Points: 100<div id="remaining_points" style="display:inline;"></div></h3>
+          {% csrf_token %}
+          {% if error %}
+      {% for i in error_msg %}
+        <h3 style="color:red"> {{i}}</h3>
+      {% endfor  %}
+      {% endif %}
+      </div>
     </div>  
-</form>
+      <div class="container">
+    <form action="{% url 'userteam' %}" method="POST">
+      {% csrf_token %}
+    <div class = "c">
+  <div class="row">
+    <div class="col-12">
+      <h1 style="text-align: center; color: green; text-transform: uppercase; font-size:30px;">Batsmen
+        </h1>
+    
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <ul style="column-count: 3; column-gap: 10rem; list-style: none;">
+       <li>
+        {% for i in batsmen %}
+        
+        <label class="c">{{i.player_name}} -
+          {{i.points}}
+            <input type="checkbox"  name="batsmen" id="{{i.player_id}}" 
+            value="{{i.player_id}}" onclick="'load_points({{i.player_id}})'">
+            <span class="checkmark"></span>
+          </label>
+      {% endfor %}
+    </li>
+       </ul>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+ <div class = "c">
+  <div class="row">
+    <div class="col-12">
+      <h1 style="text-align: center; color: green; text-transform: uppercase; font-size:30px;">Bowlers</h1>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <ul style="column-count: 3; column-gap: 10rem; list-style: none;">
+        
+       
+       <li>
+         {% for i in bowler %}
+         <label class="c">{{i.player_name}} -
+          {{i.points}}
+            <input type="checkbox"  name="bowler" id="{{i.player_id}}" 
+            value="{{i.player_id}}" onclick="'load_points({{i.player_id}})'">
+            <span class="checkmark"></span>
+          </label>
+      {% endfor %}
+       </li>
+        
+       
+       </ul>
+    </div>
+  </div>
+</div>
+<br>
+<br>
 
+<br>
+ <div class = "c">
+  <div class="row">
+    <div class="col-12">
+      <h1 style="text-align: center; color: green; text-transform: uppercase; font-size:30px;">All Rounders</h1>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <ul style="column-count: 4; column-gap: 4rem; list-style: none;">
+        
+      
+       <li>
+         {% for i in all_rounder %}
+         <label class="c">{{i.player_name}} -
+          {{i.points}}
+            <input type="checkbox"  name="all_rounder" id="{{i.player_id}}" 
+            value="{{i.player_id}}" onclick="'load_points({{ i.player_id }});'">
+            <span class="checkmark"></span>
+          </label>
+      {% endfor %}
+       </li>
+        
+       
+       </ul>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+ <div class = "c">
+  <div class="row">
+    <div class="col-12">
+      <h1 style="text-align: center; color: green; text-transform: uppercase; font-size:30px;">Wicket-Keepers</h1>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <ul style="column-count: 3; column-gap: 10rem; list-style: none;">
+        
+       
+        <li>
+          {% for i in wicket_keeper %}
+         <label class="c">{{i.player_name}} -
+          {{i.points}}
+            <input type="checkbox"  name="wicket_keeper" id="{{i.player_id}}" 
+            value="{{i.player_id}}" onclick="'load_points({{i.player_id}})'">
+            <span class="checkmark"></span>
+          </label>
+      {% endfor %}
+        </li>
+       
+       </ul>
+    </div>
+  </div>
+</div>
+
+ <br>
+ <div class="container h-100">
+        <div class="d-flex h-100"> 
+         <div class="align-self-center mx-auto"> 
+                
+                <input type="submit" name="submit" class="btn btn-success">
+            </div> 
+          </div>
+        </div>
+    
+
+  </div>
+  </form>
+<br>
+<br>
+<br>
 
 {% endblock %}

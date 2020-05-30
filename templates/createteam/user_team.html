@@ -14,25 +14,25 @@
 </div>
 <br>
 <br>
-	<form action="{% url 'dashboard' %}" method="POST">
+	<form action="{% url 'congrats' %}" method="POST">
 		{% csrf_token %}
 		<div class="row">
 			<div class="col-12">
 				<ul style="column-count: 2; column-gap: 0rem; list-style: none;">
 			{% for i in batsmen %}			
-				<input type="radio" name="captain" value="{{i.pid}}"> {{i.name}}<br>
+				<input type="radio" name="captain" value="{{i.player_id}}"> {{i.player_name}}<br>
 			{% endfor %}
 
 			{% for i in bowler %}
-				<input type="radio" name="captain" value="{{i.pid}}"> {{i.name}}<br>
+				<input type="radio" name="captain" value="{{i.player_id}}"> {{i.player_name}}<br>
 			{% endfor %}
 
 			{% for i in all_rounder %}
-				<input type="radio" name="captain" value="{{i.pid}}"> {{i.name}}<br>
+				<input type="radio" name="captain" value="{{i.player_id}}"> {{i.player_name}}<br>
 			{% endfor %}
 
 			{% for i in wicket_keeper %}
-				<input type="radio" name="captain" value="{{i.pid}}"> {{i.name}}<br>
+				<input type="radio" name="captain" value="{{i.player_id}}"> {{i.player_name}}<br>
 			{% endfor %}
 			</ul>
 			<br>

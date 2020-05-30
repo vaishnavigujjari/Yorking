@@ -1,12 +1,15 @@
 from django.contrib import admin
 from django.urls import path,include
 from . import views
-from CreateTeam.views import players,user_team,select_match,dashboard
+from CreateTeam.views import players,userteam,select_match,congrats
 
 
 urlpatterns = [
     path('', views.select_match, name='select_match'),
     path('chooseplayers',views.players, name='players'),
-    path('user_team',views.user_team, name='user_team'),
-    path('dashboard',views.dashboard, name='dashboard'),
+    path('userteam',views.userteam, name='userteam'),
+    path('congrats',views.congrats, name='congrats'),
+    path('get_points',views.get_points,name="get_points"),
+    path('update_scores',views.update_scores,name='update_scores'),
+    path('constraints',views.constraints,name='constraints'),
 ]

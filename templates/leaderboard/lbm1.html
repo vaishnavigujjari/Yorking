@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="container">
+    <div class="container">
+      <div class="section-title text-center">
+          <h2>Leader Board</h2>
+      </div>
+    </div>  
+    
+  
+    
+  {% csrf_token %}
+          {% if error %}
+        <h3 style="color:red"> {{error_msg}}</h3>
+
+      {% endif %}
+  <table class="table" style="text-align: center;">
+    <!--Table head -->
+    <thead>
+      <tr>
+        <th><h2>Rank</h2></th>
+        <th><h2>Username</h2></th>
+        <th><h2>Email</h2></th>
+        <th><h2>Points Earned</h2></th>
+<!--         <th><h2>Details</h2></th>
+ -->      </tr>
+    </thead>
+    <!-- end of Table head -->
+
+    <!--Table Body -->
+    <tbody>
+      {% for i,j in d %}
+      <tr>
+        <td><p style="font-size:14px;">{{ forloop.counter }}</p></td>
+        <td><p style="font-size:14px;">{{ j.0.user_name }}</p></td>
+        <td><p style="font-size:14px;">{{ j.0.email }}</p></td>
+        <td><p style="font-size:14px;">{{ i.1 }}</p></td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
+
+
+
+{% endblock %}
+
+  

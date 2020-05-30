@@ -1,70 +1,75 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+
 <div class="container">
-    <!-- <div class="container">
+    <div class="container">
       <div class="section-title text-center">
           <h2>Create your team for upcoming Matches</h2>
       </div>
-    </div>   -->
+    </div>  
+
+
+    {% csrf_token %}
+          {% if error %}
+      
+        <h3 style="color:red"> {{error_msg}}</h3>
+
+      {% endif %}
+     <form action="{% url 'players' %}" method="POST">
   <table class="table" style="text-align: center;">
+
     <!--Table head -->
     <thead>
       <tr>
-        <th><h4>Match ID</h4></th>
-        <th><h4>Country-1</h4></th>
-        <th><h4>Country-2</h4></th>
-        <th><h4>Details</h4></th>
+        <th><h2>Match ID</h2></th>
+        <th><h2>Country-1</h2></th>
+        <th><h2>Country-2</h2></th>
+        <th><h2>Details</h2></th>
       </tr>
     </thead>
+    <!-- end of Table head -->
+
+    <!--Table Body -->
     <tbody>
-      {% if error %}
-	        {% for i in error_msg %}
-	            <p style="color:red">{{i}}</p>
-	        {% endfor %}
-        {% endif %}
-      <form action="{% url 'players' %}" method="POST">
+      
+     
+        {% for i in matches %}
         {% csrf_token %}
-        <tr>
-            {% for i in r1 %}
-	            <td>{{ i }}</td>
-            {% endfor %}
-            <td><input type="radio" name="match" id="1" value="1"></td><br>
-        </tr>
-        <br>
-        <br>
-        <tr>
-            {% for i in r2 %}
-              <td>{{ i }}</td>
-            {% endfor %}
-            <td><input type="radio" name="match" id="2" value="2"></td><br>
-        </tr>
-        <tr>
-            {% for i in r3 %}
-              <td>{{ i }}</td>
-            {% endfor %}
-            <td><input type="radio" name="match" id="3" value="3"></td><br>
-        </tr>
-        <tr>
-            {% for i in r4 %}
-              <td>{{ i }}</td>
-            {% endfor %}
-            <td><input type="radio" name="match" id="4" value="4"></td><br>
-        </tr>
-        <tr>
-          {% for i in r5 %}
-            <td>{{ i }}</td>
-          {% endfor %}
-          <td><input type="radio" name="match" id="5" value="5"></td><br>
-        </tr>
+      <tr>
         
+        
+        <td><p style="font-size:14px;">{{ forloop.counter }}</p></td>
+        <td><p style="font-size:14px;">{{ i.country1 }}</p></td>
+        <td><p style="font-size:14px;">{{ i.country2 }}</p></td>
+        
+        <td><input type="radio" name="match" id="match" value="{{i.match_id}}"></td>
+      </tr> 
+      {% endfor %}
+      <br>
+      <br><br>
+ 
+      
     </tbody>
-    </table>
-    <div style="text-align: center;">
-      <input type="submit" name="submit">
+  </table>
+  <div class="container h-100">
+        <div class="d-flex h-100"> 
+         <div class="align-self-center mx-auto"> 
+      <input type="submit" name="submit" class="btn btn-success">
+    </div>
   </div>
-    </form>
 </div>
+   </form>
+</div>
+<br>
+<br>
+
+
 {% endblock %}

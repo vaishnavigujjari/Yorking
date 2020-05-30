@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def profile(request):
-    return render(request, 'Profile/profile.html')
+    emails = request.user.email
+    return render(request, 'Profile/profile.html',{'email':emails})
 
 def registerpage(request):
     if request.user.is_authenticated:

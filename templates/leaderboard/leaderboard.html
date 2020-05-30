@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
+
+<br>
 <br>
 <br>
 <br>
@@ -19,7 +23,7 @@
 
       {% endif %}
     </div>  
-  <form action="{% url 'pdm1' %}" method="POST">
+  <form action="{% url 'leaderboardeval' %}" method="POST">
   <table class="table" style="text-align: center;">
     <!--Table head -->
     <thead>
@@ -69,6 +73,6 @@
 <br>
 <br>
 <br>
-
+   
 
 {% endblock %}

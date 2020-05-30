@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Enter the Performances!</h1>
+        <div class="container">
+          <form action="{% url 'update_scores' %}" method="POST">
+            {% csrf_token %}
+            <h2>Country One:</h2>
+
+            <h3>Batsman:</h3>
+            {% for i in batsmanone_selected %}
+            <div class="form-group">
+              <!-- <label for="player">Player ID:{{i.player_id}}</label> -->
+              <label for="player" style="color:#ff9900">{{i.player_name}}</label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Runs</label>
+              <input type="number" name="runs_bat_1" min="0" max="1000">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Catches</label>
+              <input type="number" name="catches_bat_1" min="0" max="9">
+               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wickets</label>
+              <input type="number" name="wickets_bat_1" min="0" max="9">
+              <input type="checkbox" id="{{i.player_id}}" name="batsmen_ids_1" class="checkbox"value={{i.player_id}}> Check if there are no changes
+              <span class="checkmark"></span>
+            </div>
+            {% endfor %}
+
+            <h3>Baller:</h3>
+            {% for i in ballerone_selected %}
+            <div class="form-group">
+              <!-- <label for="player">Player ID:{{i.player_id}}</label> -->
+              <label for="player" style="color:#ff9900">{{i.player_name}}</label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Runs</label>
+              <input type="number" name="runs_ball_1" min="0" max="1000">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Catches</label>
+              <input type="number" name="catches_ball_1" min="0" max="9">
+               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wickets</label>
+              <input type="number" name="wickets_ball_1" min="0" max="9">
+              <input type="checkbox" id="{{i.player_id}}" name="bowler_ids_1" class="checkbox" value={{i.player_id}}> Check if there are no changes
+              <span class="checkmark"></span>
+            </div>
+            {% endfor %}
+
+            <h3>Wicket Keeper:</h3>
+            {% for i in wicketkeeperone_selected %}
+            <div class="form-group">
+              <!-- <label for="player">Player ID:{{i.player_id}}</label> -->
+              <label for="player" style="color:#ff9900">{{i.player_name}}</label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Runs</label>
+              <input type="number" name="runs_wk_1" min="0" max="1000">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Catches</label>
+              <input type="number" name="catches_wk_1" min="0" max="9">
+               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wickets</label>
+              <input type="number" name="wickets_wk_1" min="0" max="9">
+              <input type="checkbox" id="{{i.player_id}}" name="wk_ids_1" class="checkbox" value={{i.player_id}}> Check if there are no changes
+              <span class="checkmark"></span>
+            </div>
+            {% endfor %}
+
+            <h3>All Rounder:</h3>
+            {% for i in allrounderone_selected %}
+            <div class="form-group">
+              <!-- <label for="player">Player ID:{{i.player_id}}</label> -->
+              <label for="player" style="color:#ff9900">{{i.player_name}}</label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Runs</label>
+              <input type="number" name="runs_ar_1" min="0" max="1000">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Catches</label>
+              <input type="number" name="catches_ar_1" min="0" max="9">
+               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wickets</label>
+              <input type="number" name="wickets_ar_1" min="0" max="9">
+              <input type="checkbox" id="{{i.player_id}}" name="ar_ids_1" class="checkbox" value={{i.player_id}}> Check if there are no changes
+              <span class="checkmark"></span>
+            </div>
+            {% endfor %}
+
+            <br>
+            <h2>Country Two:</h2>
+
+            <h3>Batsman:</h3>
+            {% for i in batsmantwo_selected %}
+            <div class="form-group">
+              <!-- <label for="player">Player ID:{{i.player_id}}</label> -->
+              <label for="player" style="color:#ff9900">{{i.player_name}}</label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Runs</label>
+              <input type="number" name="runs_bat_2" min="0" max="1000">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Catches</label>
+              <input type="number" name="catches_bat_2" min="0" max="9">
+               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wickets</label>
+              <input type="number" name="wickets_bat_2" min="0" max="9">
+              <input type="checkbox" id="{{i.player_id}}" name="batsmen_ids_2" class="checkbox" value={{i.player_id}}> Check if there are no changes
+              <span class="checkmark"></span>
+            </div>
+            {% endfor %}
+
+            <h3>Baller:</h3>
+            {% for i in ballertwo_selected %}
+            <div class="form-group">
+              <!-- <label for="player">Player ID:{{i.player_id}}</label> -->
+              <label for="player" style="color:#ff9900">{{i.player_name}}</label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Runs</label>
+              <input type="number" name="runs_ball_2" min="0" max="1000">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Catches</label>
+              <input type="number" name="catches_ball_2" min="0" max="9">
+               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wickets</label>
+              <input type="number" name="wickets_ball_2" min="0" max="9">
+              <input type="checkbox" id="{{i.player_id}}" name="bowler_ids_2" class="checkbox" value={{i.player_id}}> Check if there are no changes
+              <span class="checkmark"></span>
+            </div>
+            {% endfor %}
+
+            <h3>Wicket Keeper:</h3>
+            {% for i in wicketkeepertwo_selected %}
+            <div class="form-group">
+              <!-- <label for="player">Player ID:{{i.player_id}}</label> -->
+              <label for="player" style="color:#ff9900">{{i.player_name}}</label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Runs</label>
+              <input type="number" name="runs_wk_2" min="0" max="1000">
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Catches</label>
+              <input type="number" name="catches_wk_2" min="0" max="9">
+               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wickets</label>
+              <input type="number" name="wickets_wk_2" min="0" max="9">
+              <input type="checkbox" id="{{i.player_id}}" name="wk_ids_2" class="checkbox" value={{i.player_id}}> Check if there are no changes
+              <span class="checkmark"></span>
+            </div>
+            {% endfor %}
+
+            <h3>All Rounder:</h3>
+            {% for i in allroundertwo_selected %}
+            <div class="form-group">
+              <!-- <label for="player">Player ID:{{i.player_id}}</label> -->
+              <p></p>
+              <label for="player" style="color:#ff9900">{{i.player_name}}</label>
+              <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Runs</label>
+              <input type="number" name="runs_ar_2" min="0" max="1000" >
+                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Catches</label>
+              <input type="number" name="catches_ar_2" min="0" max="9">
+               <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wickets</label>
+              <input type="number" name="wickets_ar_2" min="0" max="9">
+              <input type="checkbox" id="{{i.player_id}}" name="ar_ids_2" class="checkbox" value={{i.player_id}}> Check if there are no changes
+              <span class="checkmark"></span>
+            </div>
+            {% endfor %}
+
+            <br><br>
+            <p>(Submit only if there will not be any changes)</p>
+            <input type="submit" id ="btn" value="Submit" disabled  class="btn btn-warning margin-bottom button">
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script > 
+$( ".checkbox" ).on( "click", function() {
+  if($( ".checkbox:checked" ).length > 21)
+  {
+    $('#btn').prop('disabled', false);
+  }
+  else
+  {
+    $('#btn').prop('disabled', true);
+  }  
+});
+</script>
+    <!-- BOOTSTRAP AND JQUERY LINKS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+    {% endblock %}
